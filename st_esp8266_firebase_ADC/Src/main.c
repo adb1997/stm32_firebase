@@ -160,9 +160,9 @@ int main(void) {
 	SensorAxes_t accel;
 	SensorAxes_t gyro;
 	SensorAxes_t mag;
-	uint32_t t2;
-	char time[100];
-	char data[200];
+	//uint32_t t2;
+	//char time[100];
+	//char data[200];
 	/* USER CODE END 2 */
 
 	/* Infinite loop */
@@ -171,7 +171,7 @@ int main(void) {
 		/* USER CODE END WHILE */
 
 		/* USER CODE BEGIN 3 */
-		t1 = HAL_GetTick();
+	//	t1 = HAL_GetTick();
 		accel = Accelero_Sensor_Handler(LSM6DSM_X_0_handle);
 		gyro = Gyro_Sensor_Handler(LSM6DSM_G_0_handle);
 		mag = Magneto_Sensor_Handler(LSM303AGR_M_0_handle);
@@ -183,18 +183,18 @@ int main(void) {
 		Value_Buf[2] = (int32_t) accel.AXIS_X;
 		Value_Buf[3] = (int32_t) accel.AXIS_Y;
 		Value_Buf[4] = (int32_t) accel.AXIS_Z;
-		Value_Buf[5] = (int32_t) gyro.AXIS_X;
-		Value_Buf[6] = (int32_t) gyro.AXIS_Y;
-		Value_Buf[7] = (int32_t) gyro.AXIS_Z;
+		Value_Buf[5] = (int32_t) (gyro.AXIS_X /100);
+		Value_Buf[6] = (int32_t) (gyro.AXIS_Y/100);
+		Value_Buf[7] = (int32_t) (gyro.AXIS_Z/100);
 		Value_Buf[8] = (int32_t) mag.AXIS_X;
 		Value_Buf[9] = (int32_t) mag.AXIS_Y;
 		Value_Buf[10] =	(int32_t) mag.AXIS_Z;
 		ESP_Send_Multi(Value_Buf);
 		HAL_GPIO_TogglePin(GPIOG, GPIO_PIN_12);
 
-		t2 = HAL_GetTick() - t1;
-		sprintf(time, "%d\r\n", t2);
-		Uart_debug_sendstring(time);
+		//t2 = HAL_GetTick() - t1;
+		//sprintf(time, "%d\r\n", t2);
+		//Uart_debug_sendstring(time);
 
 //		sprintf(data, "EMG:%d\r\n", ADC_Value, Value_Buf[5], Value_Buf[6],
 //				Value_Buf[7]);

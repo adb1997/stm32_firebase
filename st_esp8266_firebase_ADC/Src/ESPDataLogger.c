@@ -84,7 +84,7 @@ void ESP_Send_Multi(int32_t value[]) {
 	char field_buf[700] = { 0 };        // Actual data
 
 	sprintf(field_buf,
-			"EMG:%ld,IMU-X:%ld,IMU-Y:%ld,IMU-Z:%ld,G-X:%ld,G-Y:%ld,G-Z:%ld,M-X:%ld,M-Y:%ld,M-X:%ld",
+			"emg:%ld,ax:%ld,ay:%ld,az:%ld,gx:%ld,gy:%ld,gz:%ld,mx:%ld,my:%ld,mz:%ld",
 			value[0], value[2], value[3], value[4], value[5],
 			value[6], value[7],value[8],value[9],value[10]);
 	int len = strlen(field_buf);
