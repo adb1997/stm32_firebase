@@ -160,9 +160,9 @@ int main(void) {
 	SensorAxes_t accel;
 	SensorAxes_t gyro;
 	SensorAxes_t mag;
-	//uint32_t t2;
+	uint32_t t2;
 	//char time[100];
-	//char data[200];
+	char data[200];
 	/* USER CODE END 2 */
 
 	/* Infinite loop */
@@ -171,7 +171,7 @@ int main(void) {
 		/* USER CODE END WHILE */
 
 		/* USER CODE BEGIN 3 */
-	//	t1 = HAL_GetTick();
+		t1 = HAL_GetTick();
 		accel = Accelero_Sensor_Handler(LSM6DSM_X_0_handle);
 		gyro = Gyro_Sensor_Handler(LSM6DSM_G_0_handle);
 		mag = Magneto_Sensor_Handler(LSM303AGR_M_0_handle);
@@ -196,9 +196,9 @@ int main(void) {
 		//sprintf(time, "%d\r\n", t2);
 		//Uart_debug_sendstring(time);
 
-//		sprintf(data, "EMG:%d\r\n", ADC_Value, Value_Buf[5], Value_Buf[6],
+		sprintf(data, "EMG:%d\r\n", ADC_Value);//, Value_Buf[5], Value_Buf[6],
 //				Value_Buf[7]);
-//		Uart_debug_sendstring(data);
+		Uart_debug_sendstring(data);
 //        HAL_Delay(15000);
 	}
 	/* USER CODE END 3 */
@@ -963,9 +963,9 @@ SensorAxes_t Accelero_Sensor_Handler(void *handle) {
 			acceleration.AXIS_Y = 0;
 			acceleration.AXIS_Z = 0;
 		}
-		sprintf(dataOut, "accel: %d, %d, %d\r\n", (int) acceleration.AXIS_X,
-				(int) acceleration.AXIS_Y, (int) acceleration.AXIS_Z);
-		CDC_Transmit_FS((uint8_t*) dataOut, strlen(dataOut));
+		//sprintf(dataOut, "accel: %d, %d, %d\r\n", (int) acceleration.AXIS_X,
+			//	(int) acceleration.AXIS_Y, (int) acceleration.AXIS_Z);
+		//CDC_Transmit_FS((uint8_t*) dataOut, strlen(dataOut));
 	}
 	return acceleration;
 }
@@ -995,9 +995,9 @@ SensorAxes_t Gyro_Sensor_Handler(void *handle) {
 			angular_velocity.AXIS_Y = 0;
 			angular_velocity.AXIS_Z = 0;
 		}
-		sprintf(dataOut, "gyro: %d, %d, %d\r\n", (int) angular_velocity.AXIS_X,
-				(int) angular_velocity.AXIS_Y, (int) angular_velocity.AXIS_Z);
-		CDC_Transmit_FS((uint8_t*) dataOut, strlen(dataOut));
+		//sprintf(dataOut, "gyro: %d, %d, %d\r\n", (int) angular_velocity.AXIS_X,
+			//	(int) angular_velocity.AXIS_Y, (int) angular_velocity.AXIS_Z);
+		//CDC_Transmit_FS((uint8_t*) dataOut, strlen(dataOut));
 	}
 	return angular_velocity;
 }
@@ -1032,9 +1032,9 @@ SensorAxes_t Magneto_Sensor_Handler( void *handle )
       magnetic_field.AXIS_Y = 0;
       magnetic_field.AXIS_Z = 0;
     }
-	sprintf(dataOut, "mag: %d, %d, %d\r\n", (int) magnetic_field.AXIS_X,
-				(int) magnetic_field.AXIS_Y, (int) magnetic_field.AXIS_Z);
-		CDC_Transmit_FS((uint8_t*) dataOut, strlen(dataOut));
+	//sprintf(dataOut, "mag: %d, %d, %d\r\n", (int) magnetic_field.AXIS_X,
+		//		(int) magnetic_field.AXIS_Y, (int) magnetic_field.AXIS_Z);
+		//CDC_Transmit_FS((uint8_t*) dataOut, strlen(dataOut));
   }
   return magnetic_field;
 }
